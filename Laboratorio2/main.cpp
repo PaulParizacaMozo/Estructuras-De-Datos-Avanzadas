@@ -12,7 +12,7 @@ using namespace std;
 
 typedef void (*FuncionPuntero)(vector<int>,int);
 
-int n_num = 1000000;
+int n_num = 100000;
 
 void generarNumerosAletorios(){
     ofstream file;
@@ -69,19 +69,9 @@ void menu(){
     cout<<"2.- Mostrar grafica comparando la complejidad computacional\n";
 }
 
-int main()
-{
-    vector<int>nums;
-    //generarNumerosAletorios();    
-    leerNumerosAleatorios(nums);
-    //int cantidadNums[7] = {100,1000,5000,10000,100000,500000,1000000};
-    //int cantidadNums[7] = {100,1000,5000,10000,100000,1000000};
-    int cantidadNums[7] = {10,100,500,1000,2500,5000};
-    leerArreglo(nums);
-    //graficarComplejidadComputacional();
-
+void escribirDatos(string nombreArchivo,vector<int> cantidadNums,vector<int>nums){
     ofstream file;
-    file.open("tiempos.txt");
+    file.open(nombreArchivo);
     
     //BubbleSort
     cout<<"Llego";
@@ -132,7 +122,26 @@ int main()
     file<<endl;
     cout<<endl;
     file.close();
-    cout<<"Termino"<<endl;
+
+}
+
+int main()
+{
+    vector<int>nums;
+    //generarNumerosAletorios();    
+    leerNumerosAleatorios(nums);
+    //int cantidadNums[7] = {100,1000,5000,10000,100000,500000,1000000};
+    //int cantidadNums[7] = {100,1000,5000,10000,100000,1000000};
+    vector<int>cantidadNums = {10,100,500,1000,2500,5000};
+    vector<int>cantidadNums2 = {5000,10000,20000,50000,100000};
+
+    leerArreglo(nums);
+
+    escribirDatos("tiempos.txt", cantidadNums, nums);
+    escribirDatos("tiempos2.txt", cantidadNums2, nums);
+    //graficarComplejidadComputacional();
+
+        cout<<"Termino"<<endl;
 
     //leerArreglo(nums);
 

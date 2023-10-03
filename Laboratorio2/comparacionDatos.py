@@ -8,8 +8,13 @@ with open('tiempos.txt', 'r') as archivo:
         elementos = [float(elemento) for elemento in linea.strip().split()]
         vector.append(elementos)
 
+print(vector)
+
 for i in vector:
     print(i)
+
+####
+
 
 # Redondear los elementos del vector a 1 decimal
 vector_de_vectores = [[round(elemento, 3) for elemento in fila] for fila in vector]
