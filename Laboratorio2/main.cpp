@@ -1,4 +1,4 @@
-#include <cstdlib>
+//#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -32,7 +32,6 @@ vector<int> leerNumerosAleatorios(vector<int>& nums){
     string num;
     while (getline(file, num)){
         nums.push_back(stoi(num));
-       // cout<<num<<"\n";
     }
     return nums;
 }
@@ -57,7 +56,7 @@ void graficarComplejidadComputacional(){
 //    cout << "Tiempo de ejecucion: " << rounded_duration << " milisegundos" << std::endl;
 //    return rounded_duration;
 //}
-double ejecutarFuncion(FuncionPuntero funct, std::vector<int>& vect, int valor) {
+double ejecutarFuncion(FuncionPuntero funct, std::vector<int> vect, int valor) {
     auto start_time = std::chrono::high_resolution_clock::now();
     funct(vect, valor);
     auto end_time = std::chrono::high_resolution_clock::now();
@@ -70,19 +69,20 @@ void menu(){
     cout<<"2.- Mostrar grafica comparando la complejidad computacional\n";
 }
 
-int main(int argc, char *argv[])
+int main()
 {
     vector<int>nums;
     //generarNumerosAletorios();    
     leerNumerosAleatorios(nums);
     //int cantidadNums[7] = {100,1000,5000,10000,100000,500000,1000000};
-    int cantidadNums[6] = {100,1000,5000,10000,50000,100000};
+    //int cantidadNums[7] = {100,1000,5000,10000,100000,1000000};
+    int cantidadNums[7] = {10,100,500,1000,2500,5000};
     leerArreglo(nums);
     //graficarComplejidadComputacional();
 
     ofstream file;
     file.open("tiempos.txt");
-    /*
+    
     //BubbleSort
     cout<<"Llego";
     for(int i : cantidadNums){
@@ -90,60 +90,50 @@ int main(int argc, char *argv[])
        file<<aux<<" ";
     }
     file<<endl;
-    */
     // Heap Sort
     for(int i : cantidadNums){
        double aux = ejecutarFuncion(HeapSort,nums,i); 
-       //file<<aux<<" ";
-       cout<<aux<<" ";
+       file<<aux<<" ";
     }
-    //file<<endl;
-    cout<<endl;
+    file<<endl;
+
     // Insertion Sort
     for(int i : cantidadNums){
        double aux = ejecutarFuncion(InsertionSort,nums,i); 
-       //file<<aux<<" ";
-       cout<<aux<<" ";
+       file<<aux<<" ";
     }
-    //file<<endl;
-    cout<<endl;
+    file<<endl;
 
-    /*
     //Selection Sort
     for(int i : cantidadNums){
        double aux = ejecutarFuncion(SelectionSort,nums,i); 
        file<<aux<<" ";
     }
     file<<endl;
-    */
     // Shell Sort
     for(int i : cantidadNums){
        double aux = ejecutarFuncion(ShellSort,nums,i); 
-       cout<<aux<<" ";
+       file<<aux<<" ";
     }
     file<<endl;
-    cout<<endl;
     
     //Merge Sort
     for(int i : cantidadNums){
        double aux = ejecutarFuncion(MergeSort,nums,i); 
-       cout<<aux<<" ";
-       //file<<aux<<" ";
+       file<<aux<<" ";
     }
     file<<endl;
-    cout<<endl;
     
     // Quick Sort
     for(int i : cantidadNums){
        double aux = ejecutarFuncion(QuickSort,nums,i); 
-       //file<<aux<<" ";
-       cout<<aux<<" ";
+       file<<aux<<" ";
     }
     file<<endl;
     cout<<endl;
     file.close();
     cout<<"Termino"<<endl;
-    cin.get();
+
     //leerArreglo(nums);
 
     return 0;
